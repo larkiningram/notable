@@ -33,28 +33,37 @@ namespace notable.Controllers
         [HttpPost]
         public IActionResult AddDoctor(Doctor doctor)
         {
-            _service.AddDoctor(doctor);
-            return Ok();
+            if (_service.AddDoctor(doctor))
+                return Ok();
+            return new BadRequestObjectResult("that doctor already exists");
+        }
+
+        [HttpGet("{id}/appointments")]
+        public IEnumerable<Appointment> GetAppointments(string id)
+        {
+            return _service.GetAppointments(id);
         }
 
         [HttpGet("{id}/appointments/{date}")]
-        public IEnumerable<Appointment> GetAppointments(string id, string date)
+        public IEnumerable<Appointment> GetAppointmentsByDate(string id, string date)
         {
-            return _service.GetAppointments(id, date);
+            return _service.GetAppointmentsByDate(id, date);
         }
 
         [HttpPost("{id}/appointments")]
         public IActionResult AddAppointment(string id, Appointment appointment)
         {
-            _service.AddAppointment(id, appointment);
-            return Ok();
+            if (_service.AddAppointment(id, appointment))
+                return Ok();
+            return new BadRequestObjectResult("that appointment isn't formatted correctly");
         }
 
         [HttpDelete("{doctorId}/appointments/{appointmentId}")]
         public IActionResult DeleteAppointment(string doctorId, string appointmentId)
         {
-            _service.DeleteAppointment(doctorId, appointmentId);
-            return Ok();
+            if (_service.DeleteAppointment(doctorId, appointmentId))
+                return Ok();
+            return new BadRequestObjectResult("that appointment doesn't exist");
         }
     }
 

@@ -27,36 +27,57 @@ namespace notable.Services
             return new Doctor();
         }
 
-        public void AddDoctor(Doctor doctor)
+        public bool AddDoctor(Doctor doctor)
         {
             var data = ReadData();
-            doctor.id = Guid.NewGuid().ToString();
-            data.Doctors.Add(doctor);
-            WriteData(data);
+            var exists = data.Doctors.FindAll(d => (d.firstName == doctor.firstName && d.lastName == doctor.lastName));
+            if (exists.Count() == 0)
+            {
+                doctor.id = Guid.NewGuid().ToString();
+                data.Doctors.Add(doctor);
+                WriteData(data);
+                return true;
+            }
+            return false;
         }
 
-        public List<Appointment> GetAppointments(string doctorId, string date)
+        public List<Appointment> GetAppointments(string doctorId)
+        {
+            var data = ReadData();
+            return data!.Appointments.FindAll(a => a.doctorId == doctorId);
+        }
+
+        public List<Appointment> GetAppointmentsByDate(string doctorId, string date)
         {
             var data = ReadData();
             var appointmentsByDoctor = data!.Appointments.FindAll(a => a.doctorId == doctorId);
             return appointmentsByDoctor.FindAll(a => a.visit.date == date);
         }
 
-        public void AddAppointment(string doctorId, Appointment appointment)
+        public bool AddAppointment(string doctorId, Appointment appointment)
         {
             var data = ReadData();
             appointment.id = Guid.NewGuid().ToString();
             if (CheckIfValidAppointment(doctorId, appointment, data))
+            {
                 data!.Appointments.Add(appointment);
                 WriteData(data);
+                return true;
+            }
+            return false;
         }
 
-        public void DeleteAppointment(string doctorId, string appointmentId)
+        public bool DeleteAppointment(string doctorId, string appointmentId)
         {
             var data = ReadData();
             var keep = data.Appointments.FindAll(a => a.id != appointmentId);
-            data.Appointments = keep;
-            WriteData(data);
+            if (keep.Count() != data.Appointments.Count())
+            { 
+                data.Appointments = keep;
+                WriteData(data);
+                return true;
+            }
+            return false;
         }
 
         private Data ReadData()
@@ -80,6 +101,7 @@ namespace notable.Services
             var sameDay = otherAppointments.FindAll(a => a.visit.date == appointment.visit.date);
             var sameTime = otherAppointments.FindAll(a => a.visit.time == appointment.visit.time).Count();
             if (sameTime > 2) return false;
+            if (appointment.kind != "New Patient" && appointment.kind != "Follow-up") return false;
             return true;
         }
     }
