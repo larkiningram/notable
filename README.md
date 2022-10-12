@@ -10,7 +10,7 @@ endpoints include:
   - GET all doctors `https://localhost:7167/doctors`
   - GET all appointments
     - by doctor `https://localhost:7167/doctors/{doctorId}/appointments`
-    - by doctor AND day `https://localhost:7167/doctors/{doctorId}/appointments/{day}`
+    - by doctor AND day `https://localhost:7167/doctors/{doctorId}/appointments/{day}` (day parameter needs to be in yyyy-mm-dd format)
   - POST new doctor `https://localhost:7167/doctors/{doctorId}`
     example request body:
     `{
