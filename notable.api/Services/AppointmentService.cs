@@ -99,7 +99,7 @@ namespace notable.Services
             if (int.Parse(times[1]) % 15 != 0) return false;
             var otherAppointments = data.Appointments.FindAll(a => a.doctorId == doctorId);
             var sameDay = otherAppointments.FindAll(a => a.visit.date == appointment.visit.date);
-            var sameTime = otherAppointments.FindAll(a => a.visit.time == appointment.visit.time).Count();
+            var sameTime = sameDay.FindAll(a => a.visit.time == appointment.visit.time).Count();
             if (sameTime > 2) return false;
             if (appointment.kind != "New Patient" && appointment.kind != "Follow-up") return false;
             return true;
