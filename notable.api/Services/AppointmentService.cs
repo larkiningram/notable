@@ -58,6 +58,7 @@ namespace notable.Services
         {
             var data = ReadData();
             appointment.id = Guid.NewGuid().ToString();
+            appointment.doctorId = doctorId;
             if (CheckIfValidAppointment(doctorId, appointment, data))
             {
                 data!.Appointments.Add(appointment);
