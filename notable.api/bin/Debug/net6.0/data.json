@@ -1,0 +1,49 @@
+{
+  "Doctors": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "appointments": [ 3 ]
+    },
+    {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "appointments": [ 2 ]
+    },
+    {
+      "id": "3",
+      "firstName": "Jack",
+      "lastName": "Todd",
+      "appointments": [ 1 ]
+    }
+  ],
+  "Patients": [
+    {
+      "id": "1",
+      "firstName": "Megan",
+      "lastName": "Rice",
+      "appointments": [
+        {
+          "id": "1",
+          "doctorId": "3",
+          "reason": "check up",
+          "time": "2022-10-01 14:00:00"
+        },
+        {
+          "id": "2",
+          "doctorId": "2",
+          "reason": "check up",
+          "time": "2022-10-01 14:00:00"
+        },
+        {
+          "id": "3",
+          "doctorId": "1",
+          "reason": "check up",
+          "time": "2022-10-01 14:00:00"
+        }
+      ]
+    }
+  ]
+}
