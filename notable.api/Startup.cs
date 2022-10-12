@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using notable.Services;
 
 namespace notable
 {
@@ -28,6 +29,8 @@ namespace notable
             services.AddHttpContextAccessor();
 
             services.AddSwaggerGen();
+
+            services.AddScoped<IAppointmentService, AppointmentService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

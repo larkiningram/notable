@@ -1,0 +1,60 @@
+{
+  "Doctors": [
+    {
+      "id": "485868db-8826-4603-b480-6c9e1f02ea2e",
+      "firstName": "Cherry",
+      "lastName": "Newman"
+    },
+    {
+      "id": "8a1f3a5c-93a7-4710-9fe5-3bd36d616dca",
+      "firstName": "Algernop",
+      "lastName": "Krieger"
+    },
+    {
+      "id": "1f226835-cb7f-4ac0-a3d8-827e1ed348e3",
+      "firstName": "Nick",
+      "lastName": "Riviera"
+    }
+  ],
+  "Appointments": [
+    {
+      "id": "a52234be-bdcb-4586-8041-55ac98b07535",
+      "doctorId": "485868db-8826-4603-b480-6c9e1f02ea2e",
+      "patient": {
+        "firstName": "Sterling",
+        "lastName": "Archer"
+      },
+      "kind": "New Patient",
+      "visit": {
+        "time": "14:00:00",
+        "date": "2022-11-01"
+        }
+      },
+    {
+      "id": "87e0c9da-fe52-43ff-8b78-4bdbb7159872",
+      "doctorId": "485868db-8826-4603-b480-6c9e1f02ea2e",
+      "patient": {
+        "firstName": "Cyril",
+        "lastName": "Figis"
+      },
+      "kind": "New Patient",
+      "visit": {
+        "time": "14:00:00",
+        "date": "2022-11-01"
+      }
+    },
+    {
+      "id": "07406ca7-d6a1-4a10-893d-88974938001c",
+      "doctorId": "485868db-8826-4603-b480-6c9e1f02ea2e",
+      "patient": {
+        "firstName": "John",
+        "lastName": "Smith"
+      },
+      "kind": "New Patient",
+      "visit": {
+        "time": "14:00:00",
+        "date": "2022-11-01"
+      }
+    }
+  ]
+}
